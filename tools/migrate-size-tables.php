@@ -56,12 +56,24 @@ foreach ( $tm_ids as $tm_id ) {
 		continue;
 	}
 
-	$sizes = array_slice( $rows[0], 1 );
+	// Columnas con talla (las que no tienen nombre de talla, vacías, se descartan).
+	$cols = array();
+	foreach ( array_slice( $rows[0], 1 ) as $i => $s ) {
+		if ( '' !== $s ) {
+			$cols[ $i ] = $s;
+		}
+	}
+	$sizes = array_values( $cols );
+	if ( ! $sizes ) {
+		echo "! #$tm_id $name: la tabla no tiene tallas, se salta (revísala a mano)\n";
+		++$tm_skip;
+		continue;
+	}
 	$unit  = '';
 	$body  = array();
 	foreach ( array_slice( $rows, 1 ) as $r ) {
 		$values = array();
-		foreach ( $sizes as $i => $unused ) {
+		foreach ( array_keys( $cols ) as $i ) {
 			$v = $r[ $i + 1 ] ?? '';
 			if ( preg_match( '/^([\d.,]+)\s*([a-zA-Z"]+)$/u', $v, $m ) ) {
 				$unit = $unit ?: $m[2];
