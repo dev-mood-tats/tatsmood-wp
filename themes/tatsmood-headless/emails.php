@@ -114,7 +114,8 @@ h2, h3, #body_content .email-additional-content p, .email-additional-content-ali
 #body_content .email-order-details .order-totals-subtotal th,
 #body_content .email-order-details .order-totals-subtotal td { padding-top: 24px !important; }
 
-a, .link { color: #000000; font-weight: 300; text-decoration: underline; }
+/* Enlaces sin subrayar (en negro y con el mismo grosor que el texto). */
+a, .link { color: #000000; font-weight: 300; text-decoration: none !important; }
 #template_footer #credit { font-size: 11px; font-weight: 300; line-height: 16px; }
 #template_footer #credit a { color: #000000; }
 ";
