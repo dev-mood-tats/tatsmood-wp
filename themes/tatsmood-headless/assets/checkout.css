@@ -277,6 +277,14 @@ a:hover {
 .wc-block-checkout__actions_row .wc-block-components-checkout-place-order-button {
 	width: 100% !important;
 }
+/* Sin «Express Checkout» arriba del todo (botón de PayPal + «Or continue below»): PayPal
+   sigue disponible como forma de pago normal en «Payment options». Ojo: aquí saldrían
+   también Apple Pay / Google Pay de Stripe si se activaran. */
+.wp-block-woocommerce-checkout-express-payment-block,
+.wc-block-components-express-payment,
+.wc-block-components-express-payment-continue-rule {
+	display: none !important;
+}
 .wc-block-components-checkout-return-to-cart-button {
 	display: none !important; /* No hay carrito en WordPress: el carrito vive en la web. */
 }
