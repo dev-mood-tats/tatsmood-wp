@@ -204,6 +204,8 @@ function tatsmood_image( $id ): ?array {
 		'alt'    => (string) get_post_meta( $id, '_wp_attachment_image_alt', true ),
 		// Centro de interés (en %): la zona que siempre se ve cuando la foto se recorta.
 		'focal'  => tatsmood_focal( $id ),
+		// Tamaños ya generados por WordPress (mu-plugins/tatsmood-images.php).
+		'srcset' => function_exists( 'tatsmood_srcset' ) ? tatsmood_srcset( $id ) : '',
 	);
 }
 
