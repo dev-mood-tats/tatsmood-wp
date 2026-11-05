@@ -1,0 +1,62 @@
+/* Editores visuales de tatsmood en el escritorio de WordPress. */
+
+/* ---------- Lookbook ---------- */
+#tatsmood-lookbook { max-width: 900px; }
+.term-php .form-table td #tatsmood-lookbook { width: min(900px, 100%); }
+.tm-slot-tools select { min-width: 0; flex: 1; }
+.tm-link { display: block; width: 100%; margin-top: 4px; font-size: 11px; min-height: 26px; padding: 0 6px; }
+.tm-rows { display: flex; flex-direction: column; gap: 12px; }
+.tm-row { background: #fff; border: 1px solid #dcdcde; padding: 10px 12px 14px; }
+.tm-row.is-tight { margin-top: -8px; border-top: 2px solid #2271b1; }
+.tm-row-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.tm-row-bar .button { display: inline-flex; align-items: center; gap: 6px; }
+.tm-handle { cursor: grab; font-size: 18px; color: #8c8f94; padding: 0 4px; user-select: none; }
+.tm-tight { font-size: 12px; }
+.tm-delete { margin-left: auto !important; color: #b32d2e !important; }
+.tm-row-placeholder { border: 2px dashed #c3c4c7; background: #f6f7f7; }
+.tm-empty { color: #646970; }
+
+/* La fila a escala: el gris es el ancho de la página. */
+.tm-page { display: grid; gap: 8px; align-items: start; background: #f6f7f7; padding: 10px; }
+.tm-slot { min-width: 0; }
+.tm-frame { display: block; width: 100%; padding: 0; border: 0; background: #e0e0e0; cursor: pointer; overflow: hidden; position: relative; }
+.tm-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--focal, 50% 50%); }
+.tm-frame:hover img { opacity: 0.8; }
+.tm-frame.is-empty { display: flex; align-items: center; justify-content: center; border: 1px dashed #8c8f94; background: #fff; color: #2271b1; font-size: 12px; }
+.tm-slot-tools { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
+.tm-slot-tools select { font-size: 11px; min-height: 24px; padding: 0 20px 0 6px; max-width: 100%; }
+
+/* Selector de plantillas */
+.tm-layouts { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 12px; }
+.tm-layout { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 110px; padding: 8px; background: #fff; border: 1px solid #dcdcde; cursor: pointer; }
+.tm-layout:hover, .tm-layout.is-active { border-color: #2271b1; box-shadow: 0 0 0 1px #2271b1; }
+.tm-layout-label { font-size: 11px; text-align: center; line-height: 1.3; }
+.tm-layout-icon { position: relative; display: block; width: 90px; height: 48px; background: #f0f0f1; }
+.tm-layout-icon span { position: absolute; top: 4px; background: #8c8f94; }
+.tm-layout-icon.is-small { width: 34px; height: 18px; }
+.tm-layout-icon.is-small span { top: 2px; }
+.tm-add { margin-top: 16px; }
+
+/* ---------- Listas ordenables (Web tatsmood) ---------- */
+.tm-cards { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+.tm-cards.is-vertical { flex-direction: column; max-width: 640px; }
+.tm-card { position: relative; display: flex; flex-direction: column; gap: 6px; width: 140px; padding: 8px; background: #fff; border: 1px solid #dcdcde; cursor: grab; }
+.tm-cards.is-vertical .tm-card { flex-direction: row; width: auto; align-items: center; gap: 12px; }
+.tm-card-img { aspect-ratio: 4 / 5; background: #f0f0f1; overflow: hidden; }
+.tm-cards.is-vertical .tm-card-img { width: 160px; aspect-ratio: 16 / 9; flex-shrink: 0; }
+.tm-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tm-card-body { display: flex; flex-direction: column; gap: 4px; }
+.tm-card-name { font-size: 12px; line-height: 1.3; }
+.tm-cards.is-vertical .tm-card-name { font-size: 14px; }
+.tm-card-note { font-size: 12px; color: #646970; }
+.tm-card-pos { position: absolute; top: 4px; left: 4px; z-index: 1; min-width: 20px; height: 20px; line-height: 20px; text-align: center; background: #1d2327; color: #fff; font-size: 11px; }
+.tm-card-remove { align-self: flex-start; color: #b32d2e !important; font-size: 12px; }
+.tm-card.is-empty { cursor: default; border-style: dashed; align-items: center; justify-content: center; color: #8c8f94; min-height: 220px; }
+.tm-card-placeholder { border: 2px dashed #2271b1; background: #f0f6fc; }
+.tm-cards-add select { min-width: 280px; }
+
+/* ---------- Centro de interés de las fotos ---------- */
+.tm-focal { position: relative; display: inline-block; max-width: 100%; cursor: crosshair; line-height: 0; }
+.tm-focal img { max-width: 100%; max-height: 260px; height: auto; display: block; }
+.tm-focal-dot { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border: 2px solid #fff; border-radius: 50%; background: rgba(34, 113, 177, 0.85); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4); pointer-events: none; }
+.tm-focal-help { display: block; margin-top: 6px; font-size: 12px; color: #646970; line-height: 1.4; }

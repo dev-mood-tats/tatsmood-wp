@@ -1,0 +1,680 @@
+/* tatsmood headless — mismo sistema visual que la web en Next.js:
+   Inter Tight 300 a 12px/17px, negro sobre blanco, grises de apoyo, sin redondeos. */
+:root {
+	--tm-bg: #ffffff;
+	--tm-fg: #000000;
+	--tm-muted: #b9b9b9;
+	--tm-line: #e9e5e5;
+	--tm-surface: #f4f4f4;
+	--tm-font: "Inter Tight", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	background: var(--tm-bg);
+	color: var(--tm-fg);
+	font-family: var(--tm-font);
+	font-size: 12px;
+	font-weight: 300;
+	line-height: 17px;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	transition: opacity 0.3s;
+}
+a:hover {
+	opacity: 0.6;
+}
+
+/* ---------- Cabecera (igual que la de la web, en blanco) ---------- */
+.tm-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 55px;
+	padding: 0 20px;
+}
+.tm-logo img {
+	display: block;
+	width: 60px;
+	height: auto;
+}
+.tm-logo:hover {
+	opacity: 1;
+}
+
+/* ---------- Contenido ---------- */
+.tm-main {
+	flex: 1;
+	width: 100%;
+	padding: 40px 20px 100px;
+}
+
+@media (min-width: 1024px) {
+	.tm-header {
+		height: 64px;
+		padding: 0 15px;
+	}
+	.tm-logo img {
+		width: 80px;
+	}
+	.tm-main {
+		padding: 60px 15px 150px;
+	}
+}
+
+/* =====================================================================
+   Checkout de WooCommerce (bloques)
+   ===================================================================== */
+
+/* Todo a 12px, sin negritas ni redondeos, como el resto de la web. */
+.wp-block-woocommerce-checkout,
+.wp-block-woocommerce-checkout * {
+	font-family: var(--tm-font) !important;
+	font-size: 12px !important;
+	line-height: 17px;
+	letter-spacing: 0;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+/* Las opciones de radio siguen siendo redondas. */
+.wp-block-woocommerce-checkout .wc-block-components-radio-control__input,
+.wp-block-woocommerce-checkout .wc-block-components-radio-control__input::before {
+	border-radius: 50% !important;
+}
+.wp-block-woocommerce-checkout :is(h1, h2, h3, h4, strong, b, .wc-block-components-title),
+.wp-block-woocommerce-checkout .wc-block-components-totals-item__label,
+.wp-block-woocommerce-checkout .wc-block-components-totals-item__value,
+.wp-block-woocommerce-checkout .wc-block-components-product-name {
+	font-weight: 300 !important;
+	color: var(--tm-fg);
+}
+
+/* El checkout va centrado dentro de un contenedor (no a todo el ancho del navegador):
+   formulario a la izquierda y resumen fijo a la derecha. */
+.wp-block-woocommerce-checkout {
+	max-width: 1100px !important;
+	margin: 0 auto !important;
+	padding: 0 !important;
+}
+.wc-block-components-sidebar-layout {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	margin: 0 !important;
+	max-width: none !important;
+}
+.wc-block-components-sidebar-layout .wc-block-components-main,
+.wc-block-components-sidebar-layout .wc-block-components-sidebar {
+	flex: 0 0 auto !important;
+	max-width: none !important;
+	width: 100% !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+@media (min-width: 1024px) {
+	.wc-block-components-sidebar-layout {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	.wc-block-components-sidebar-layout .wc-block-components-main {
+		width: 58% !important;
+	}
+	.wc-block-components-sidebar-layout .wc-block-components-sidebar {
+		position: sticky;
+		top: 30px;
+		width: 36% !important;
+	}
+}
+
+/* Pasos (Contact information, Shipping address…) */
+.wc-block-components-checkout-step {
+	margin: 0 0 45px !important;
+	padding: 0 !important;
+}
+.wc-block-components-checkout-step__heading {
+	margin: 0 0 15px !important;
+}
+.wc-block-components-checkout-step__heading-container {
+	margin: 0 !important;
+}
+.wc-block-components-checkout-step__container::after,
+.wc-block-components-checkout-step::after {
+	display: none !important;
+}
+.wc-block-components-checkout-step__description {
+	color: var(--tm-fg) !important;
+	margin-bottom: 15px !important;
+}
+
+/* Campos de texto y desplegables */
+.wc-block-components-text-input input,
+.wc-block-components-text-input textarea,
+.wc-block-components-combobox .wc-block-components-combobox-control input,
+.wc-blocks-components-select .wc-blocks-components-select__select,
+.wc-block-components-form .wc-block-components-text-input input {
+	background: var(--tm-bg) !important;
+	border: 1px solid var(--tm-line) !important;
+	color: var(--tm-fg) !important;
+	font-weight: 300 !important;
+	outline: none !important;
+	transition: border-color 0.3s;
+}
+.wc-block-components-text-input input:focus,
+.wc-block-components-text-input textarea:focus,
+.wc-blocks-components-select .wc-blocks-components-select__select:focus {
+	border-color: var(--tm-fg) !important;
+}
+.wc-block-components-text-input label,
+.wc-blocks-components-select .wc-blocks-components-select__label {
+	color: var(--tm-muted) !important;
+	font-weight: 300 !important;
+}
+.wc-blocks-components-select .wc-blocks-components-select__container {
+	background: var(--tm-bg) !important;
+	border: 0 !important;
+}
+
+/* Casillas y opciones de radio en negro */
+.wc-block-components-checkbox .wc-block-components-checkbox__input[type="checkbox"],
+.wc-block-components-radio-control__input {
+	border: 1px solid var(--tm-muted) !important;
+	background: var(--tm-bg) !important;
+	outline: none !important;
+}
+.wc-block-components-checkbox .wc-block-components-checkbox__input[type="checkbox"]:checked {
+	background: var(--tm-fg) !important;
+	border-color: var(--tm-fg) !important;
+}
+.wc-block-components-checkbox .wc-block-components-checkbox__mark {
+	fill: var(--tm-bg) !important;
+}
+.wc-block-components-radio-control__input:checked {
+	border-color: var(--tm-fg) !important;
+}
+.wc-block-components-radio-control__input:checked::before {
+	background: var(--tm-fg) !important;
+}
+
+/* Cajas de opciones (envío, pago) y tarjeta de dirección: cada opción con un borde fino
+   gris (las contiguas comparten línea) y la elegida con el borde negro, sin dobles bordes. */
+.wc-block-components-radio-control--highlight-checked::after {
+	display: none !important;
+}
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option,
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option {
+	position: relative;
+	border: 0 !important;
+	box-shadow: inset 0 0 0 1px var(--tm-line) !important;
+}
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option + .wc-block-components-radio-control__option,
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option + .wc-block-components-radio-control-accordion-option {
+	margin-top: -1px !important;
+}
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option--checked-option-highlighted,
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option--checked-option-highlighted {
+	z-index: 1;
+	box-shadow: inset 0 0 0 1px var(--tm-fg) !important;
+}
+.wc-block-components-radio-control__option::after,
+.wc-block-components-radio-control-accordion-option::after {
+	display: none !important;
+}
+.wc-block-components-address-card {
+	border: 1px solid var(--tm-line) !important;
+}
+.wc-block-components-address-card__edit {
+	text-decoration: none !important;
+	transition: opacity 0.3s;
+}
+.wc-block-components-address-card__edit:hover {
+	opacity: 0.6;
+}
+
+/* Botón «Place order» (igual que el botón Checkout del carrito de la web) */
+.wc-block-components-checkout-place-order-button,
+.wc-block-components-button:not(.is-link):not(.wc-block-components-notice-banner__dismiss) {
+	background: var(--tm-surface) !important;
+	color: var(--tm-fg) !important;
+	border: 0 !important;
+	min-height: 0 !important;
+	padding: 10px !important;
+	font-weight: 300 !important;
+	text-transform: none;
+	transition: background-color 0.3s, color 0.3s;
+}
+.wc-block-components-checkout-place-order-button:hover:not(:disabled),
+.wc-block-components-button:not(.is-link):not(.wc-block-components-notice-banner__dismiss):hover:not(:disabled) {
+	background: var(--tm-fg) !important;
+	color: var(--tm-bg) !important;
+}
+.wc-block-checkout__actions {
+	padding: 0 !important;
+	margin-top: 15px;
+}
+.wc-block-checkout__actions_row {
+	flex-direction: column-reverse;
+	align-items: stretch !important;
+	gap: 15px;
+}
+.wc-block-checkout__actions_row .wc-block-components-checkout-place-order-button {
+	width: 100% !important;
+}
+.wc-block-components-checkout-return-to-cart-button {
+	display: none !important; /* No hay carrito en WordPress: el carrito vive en la web. */
+}
+.wc-block-checkout__terms {
+	margin: 15px 0 0 !important;
+	color: var(--tm-fg);
+}
+.wc-block-checkout__terms a {
+	text-decoration: underline;
+}
+
+/* Resumen del pedido */
+.wp-block-woocommerce-checkout-order-summary-block,
+.wc-block-components-order-summary,
+.wc-block-components-totals-wrapper {
+	border: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	background: none !important;
+}
+.wp-block-woocommerce-checkout-order-summary-block {
+	border-left: 1px solid var(--tm-line) !important;
+	padding-left: 15px !important;
+}
+@media (max-width: 1023px) {
+	.wp-block-woocommerce-checkout-order-summary-block {
+		border-left: 0 !important;
+		padding-left: 0 !important;
+	}
+}
+.wc-block-components-checkout-order-summary__title {
+	margin: 0 0 15px !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+.wc-block-components-checkout-order-summary__title-text {
+	font-weight: 300 !important;
+}
+.wc-block-components-order-summary-item {
+	padding: 0 0 15px !important;
+}
+.wc-block-components-order-summary-item__image {
+	width: 60px !important;
+}
+.wc-block-components-order-summary-item__image img {
+	width: 60px !important;
+	max-width: none !important;
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+}
+.wc-block-components-order-summary-item__quantity {
+	background: var(--tm-fg) !important;
+	border: 0 !important;
+	color: var(--tm-bg) !important;
+	font-size: 10px !important;
+	min-width: 18px;
+	height: 18px;
+	line-height: 18px;
+}
+/* WooCommerce pone el precio unitario bajo el nombre y el total a la derecha: con uno
+   basta. La cantidad ya sale en la burbuja de la foto y el total es el de la línea. */
+.wc-block-components-order-summary-item .wc-block-cart-item__prices {
+	display: none !important;
+}
+.wc-block-components-product-metadata,
+.wc-block-components-product-details {
+	color: var(--tm-fg) !important;
+}
+.wc-block-components-totals-item {
+	padding: 4px 0 !important;
+}
+/* «Including 0,58 € in taxes»: sin negrita, como el resto. */
+.wc-block-components-totals-footer-item-tax,
+.wc-block-components-totals-footer-item-tax * {
+	font-weight: 300 !important;
+}
+.wc-block-components-totals-footer-item {
+	padding-top: 10px !important;
+}
+.wc-block-components-panel__button {
+	padding: 10px 0 !important;
+}
+
+/* Avisos de error / información */
+.wc-block-components-notice-banner {
+	border: 1px solid var(--tm-line) !important;
+	background: var(--tm-bg) !important;
+	color: var(--tm-fg) !important;
+	padding: 10px !important;
+}
+.wc-block-components-notice-banner > svg {
+	fill: var(--tm-fg) !important;
+	background: none !important;
+}
+.wc-block-components-validation-error,
+.wc-block-components-validation-error * {
+	color: #c0392b !important;
+}
+
+/* Mientras carga, los bloques de esqueleto en gris claro (sin brillo animado). */
+.wc-block-components-skeleton__element {
+	background: var(--tm-surface) !important;
+}
+
+/* Textos de las opciones (envío, pago) sin negrita. */
+.wc-block-components-radio-control__label,
+.wc-block-components-radio-control__secondary-label,
+.wc-block-components-radio-control__description,
+.wc-block-components-radio-control__secondary-description {
+	font-weight: 300 !important;
+	color: var(--tm-fg) !important;
+}
+
+/* Bloque de cupones sin márgenes laterales, alineado con el resto del resumen. */
+.wc-block-components-totals-coupon,
+.wc-block-components-totals-coupon .wc-block-components-panel__button,
+.wc-block-components-totals-coupon .wc-block-components-panel__content {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.wc-block-components-totals-coupon .wc-block-components-panel__button-icon {
+	right: 0 !important;
+}
+
+/* Móvil: el resumen del pedido (el que sale junto al botón de pagar) sin caja alrededor. */
+@media (max-width: 1023px) {
+	.checkout-order-summary-block-fill {
+		border: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+}
+
+/* Flechas de los desplegables (país/provincia, cupones y resumen del pedido en móvil):
+   se sustituye el icono de WooCommerce por la flecha fina de la web (assets/arrow-down.svg).
+   Se gira igual que la original al abrirse. */
+.wc-blocks-components-select__expand,
+.wc-block-components-panel__button-icon,
+.wc-block-components-checkout-order-summary__title-icon svg {
+	background: url("arrow-down.svg") center / 12px auto no-repeat;
+	fill: none !important;
+}
+.wc-blocks-components-select__expand path,
+.wc-block-components-panel__button-icon path,
+.wc-block-components-checkout-order-summary__title-icon svg path {
+	display: none;
+}
+
+/* «Order summary» alineado a la izquierda, sin margen lateral. */
+.wc-block-components-checkout-order-summary__title-text {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+/* Móvil: más aire entre el precio del resumen y la flecha. */
+.wc-block-components-checkout-order-summary__title-price {
+	margin-right: 10px !important;
+}
+
+/* WooCommerce no gira la flecha al abrir: cambia el icono por uno hacia arriba. Como aquí
+   se usa siempre la misma flecha, se gira 180° cuando el desplegable está abierto.
+   La de cupones ya lleva translateY(-50%) para centrarse en vertical: se mantiene. */
+.wc-block-components-panel__button-icon,
+.wc-block-components-checkout-order-summary__title-icon svg {
+	transition: transform 0.3s;
+}
+.wc-block-components-panel__button[aria-expanded="true"] .wc-block-components-panel__button-icon {
+	transform: translateY(-50%) rotate(180deg) !important;
+}
+.wc-block-components-checkout-order-summary__title[aria-expanded="true"] .wc-block-components-checkout-order-summary__title-icon svg {
+	transform: rotate(180deg);
+}
+
+/* Móvil: «Order summary», el total y la flecha centrados en la misma línea. */
+.wc-block-components-checkout-order-summary__title {
+	align-items: center !important;
+}
+.wc-block-components-checkout-order-summary__title-icon {
+	display: flex !important;
+	align-items: center;
+	height: 17px;
+}
+.wc-block-components-checkout-order-summary__title-icon svg {
+	display: block;
+}
+
+/* Escritorio: el resumen del pedido va siempre abierto (WooCommerce no lo hace plegable,
+   el título no lleva aria-expanded), así que sin flecha ni hueco para ella. */
+.wc-block-components-checkout-order-summary__title:not([aria-expanded]) .wc-block-components-checkout-order-summary__title-icon {
+	display: none !important;
+}
+.wc-block-components-checkout-order-summary__title:not([aria-expanded]) .wc-block-components-checkout-order-summary__title-price {
+	margin-right: 0 !important;
+}
+
+/* PayPal Payments mete arriba del formulario un contenedor vacío para su reCAPTCHA (con
+   margin: 20px 0 en línea) que baja «Contact information» respecto a «Order summary».
+   Mientras está vacío (reCAPTCHA desactivado) no ocupa sitio. */
+#ppcp-recaptcha-v2-container:empty {
+	display: none !important;
+}
+
+/* Métodos de pago (acordeón): el borde lo lleva la caja de cada método, que incluye la
+   cabecera y su contenido. La cabecera no lleva borde propio (antes salía una línea gris
+   dentro de la caja negra del método elegido). */
+.wc-block-components-radio-control-accordion-option .wc-block-components-radio-control__option {
+	box-shadow: none !important;
+}
+.wc-block-components-radio-control-accordion-content {
+	padding-top: 0 !important;
+}
+
+/* Sin los anillos de foco del navegador ni los de WooCommerce (azules/negros alrededor de
+   botones, enlaces, desplegables, casillas…). Los campos de texto siguen marcando el foco
+   con su borde negro, como los de la tarjeta de Stripe. */
+body *:focus,
+body *:focus-visible {
+	outline: none !important;
+}
+.wc-block-components-button:focus,
+.wc-block-components-panel__button:focus,
+.wc-block-components-checkbox__input:focus,
+.wc-block-components-radio-control__input:focus,
+.wc-block-components-address-card__edit:focus,
+.wc-block-components-totals-coupon-link:focus,
+.wc-block-checkout__actions_row a:focus {
+	box-shadow: none !important;
+}
+
+/* Resumen del pedido: sin la descripción corta de cada producto (solo nombre, precio y
+   variación). */
+.wc-block-components-order-summary-item .wc-block-components-product-metadata__description {
+	display: none !important;
+}
+
+/* =====================================================================
+   Packlink PRO: selector de punto de recogida dentro del checkout
+   (assets/checkout.js lo coloca bajo las opciones de envío). Sin buscador ni scroll:
+   se ven siempre todos los puntos, uno debajo de otro, con el estilo de la web.
+   ===================================================================== */
+.wc-block-checkout__main {
+	min-width: 0; /* que una línea larga no ensanche la columna */
+}
+#pl-picker-modal.tm-inline {
+	position: relative !important;
+	top: auto !important;
+	left: auto !important;
+	box-sizing: border-box;
+	width: 100% !important;
+	max-width: 100%;
+	height: auto !important;
+	z-index: auto !important;
+	margin-top: 15px;
+	border: 1px solid var(--tm-line) !important;
+	box-shadow: none !important;
+	background: var(--tm-bg);
+}
+/* Sin la barra de arriba con la X: al elegir un punto, la lista se cierra sola. */
+#pl-picker-modal.tm-inline #pl-picker-modal-close {
+	display: none !important;
+}
+#pl-picker-modal.tm-inline * {
+	font-family: var(--tm-font) !important;
+	font-weight: 300 !important;
+	color: var(--tm-fg);
+}
+/* Sin buscador y sin scroll: la lista entera, con su altura natural. */
+#pl-picker-modal.tm-inline .lp-input-wrapper {
+	display: none !important;
+}
+#pl-picker-modal.tm-inline .lp-content,
+#pl-picker-modal.tm-inline .lp-locations {
+	display: block !important;
+	height: auto !important;
+	min-height: 0 !important;
+	overflow: visible !important;
+}
+/* Cada punto: datos a la izquierda (nombre, calle, población), «Select» y mapa a la derecha.
+   Igual en escritorio y en móvil (Packlink cambia a otra maqueta en móvil: fuera). */
+#pl-picker-modal.tm-inline .lp-location-wrapper {
+	display: grid !important;
+	grid-template-columns: minmax(0, 1fr) auto auto;
+	grid-template-areas:
+		"name select map"
+		"street select map"
+		"city select map";
+	align-items: center;
+	column-gap: 15px;
+	min-height: 0;
+	padding: 15px !important;
+	border: 0 !important;
+	border-top: 1px solid var(--tm-line) !important;
+	cursor: default;
+}
+#pl-picker-modal.tm-inline [data-lp-id="locations"] > .lp-location-wrapper:first-child {
+	border-top: 0 !important;
+}
+#pl-picker-modal.tm-inline .lp-location-wrapper.selected {
+	outline: 1px solid var(--tm-fg);
+	outline-offset: -1px;
+}
+#pl-picker-modal.tm-inline .lp-location-wrapper > * {
+	min-height: 0 !important;
+	width: auto !important;
+	margin: 0 !important;
+	line-height: 17px !important;
+	white-space: normal !important;
+	overflow: visible !important;
+}
+#pl-picker-modal.tm-inline .lp-location-wrapper > .lp-expand {
+	display: none !important;
+}
+#pl-picker-modal.tm-inline .lp-location-wrapper > .lp-collapse {
+	display: block !important;
+}
+#pl-picker-modal.tm-inline .lp-location-wrapper > .name { grid-area: name; }
+/* La calle se reparte en la rejilla para que la población vaya justo debajo. */
+#pl-picker-modal.tm-inline .lp-location-wrapper > .street { display: contents !important; }
+#pl-picker-modal.tm-inline .lp-location-wrapper > .street > .street-name { grid-area: street; }
+#pl-picker-modal.tm-inline .lp-location-wrapper > .city { grid-area: city; }
+#pl-picker-modal.tm-inline .lp-location-wrapper > .lp-select-column { grid-area: select; min-width: 0 !important; }
+#pl-picker-modal.tm-inline .lp-location-wrapper > a { grid-area: map; }
+#pl-picker-modal.tm-inline .street-name {
+	margin: 0 !important;
+}
+/* Sin «Show working hours» ni el horario. */
+#pl-picker-modal.tm-inline .lp-working-hours-btn,
+#pl-picker-modal.tm-inline .lp-working-hours {
+	display: none !important;
+}
+#pl-picker-modal.tm-inline .lp-select-button {
+	height: auto !important;
+	margin: 0 !important;
+	padding: 8px 14px !important;
+	border: 1px solid var(--tm-fg) !important;
+	border-radius: 0 !important;
+	line-height: 17px !important;
+	color: var(--tm-fg) !important;
+	transition: background-color 0.3s, color 0.3s;
+}
+#pl-picker-modal.tm-inline .lp-select-button:hover {
+	background: var(--tm-fg) !important;
+	color: var(--tm-bg) !important;
+}
+#pl-picker-modal.tm-inline .lp-select-button:hover * {
+	color: var(--tm-bg) !important;
+}
+/* Icono del mapa: chincheta de trazo fino, como los iconos de la web. */
+#pl-picker-modal.tm-inline .lp-show-on-map-btn,
+#pl-picker-modal.tm-inline a:hover > .lp-show-on-map-btn {
+	width: 16px !important;
+	height: 20px !important;
+	margin: 0 !important;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 20'%3E%3Cpath d='M8 19s-6.5-6.6-6.5-11a6.5 6.5 0 0 1 13 0c0 4.4-6.5 11-6.5 11z' fill='none' stroke='%23000' stroke-width='1'/%3E%3Ccircle cx='8' cy='8' r='2.25' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") !important;
+	transition: opacity 0.3s;
+}
+#pl-picker-modal.tm-inline a:hover > .lp-show-on-map-btn {
+	opacity: 0.5;
+}
+/* Aviso de Packlink («no drop-off locations…»): bajo las opciones de envío, sin la caja
+   azul ni el icono de WooCommerce. */
+#no-drop-off-locations-message {
+	margin-top: 15px;
+}
+#no-drop-off-locations-message .woocommerce-info {
+	margin: 0 !important;
+	padding: 12px 15px !important;
+	border: 0 !important;
+	background: var(--tm-surface) !important;
+	color: var(--tm-fg) !important;
+	font-family: var(--tm-font) !important;
+	font-size: 12px !important;
+	font-weight: 300 !important;
+	line-height: 17px !important;
+	list-style: none;
+}
+#no-drop-off-locations-message .woocommerce-info::before,
+#no-drop-off-locations-message .woocommerce-info::after {
+	display: none !important;
+	content: none !important;
+}
+/* Botón «Select Drop-Off Location», como los de la web. */
+#packlink-drop-off {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+#packlink-drop-off-picker {
+	height: 40px;
+	margin: 0 !important;
+	padding: 0 20px;
+	border: 0 !important;
+	background: var(--tm-surface) !important;
+	color: var(--tm-fg) !important;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+}
+#packlink-drop-off-picker:hover {
+	background: var(--tm-fg) !important;
+	color: var(--tm-bg) !important;
+}
