@@ -409,6 +409,13 @@ a:hover {
 	right: 0 !important;
 }
 
+/* Móvil: WooCommerce enseña el resumen dos veces, plegado arriba del todo y completo junto
+   al botón de pagar. Solo se deja el de abajo. (Con :has, solo cuando el de abajo existe:
+   en tablet WooCommerce no lo pinta y entonces se queda el de arriba.) */
+.wc-block-checkout:has(.checkout-order-summary-block-fill) .wc-block-checkout__sidebar {
+	display: none !important;
+}
+
 /* Móvil: el resumen del pedido (el que sale junto al botón de pagar) sin caja alrededor. */
 @media (max-width: 1023px) {
 	.checkout-order-summary-block-fill {
@@ -664,6 +671,18 @@ body *:focus-visible {
 #no-drop-off-locations-message .woocommerce-info::after {
 	display: none !important;
 	content: none !important;
+}
+/* Packlink mete su botón en todas las opciones de envío y lo oculta en las que no son de
+   punto de recogida (style="display: none"), pero deja su caja con margen: un hueco vacío
+   en «delivery». Si el botón está oculto, la caja tampoco ocupa sitio. */
+#packlink-drop-off:has(> #packlink-drop-off-picker[style*="none"]) {
+	display: none !important;
+}
+/* «Package will be delivered to: …» (el punto elegido): más aire por arriba y a todo el
+   ancho (Packlink le pone en línea un máximo de 200px). */
+.wc-block-components-radio-control__label-group .woocommerce-shipping-destination {
+	max-width: none !important;
+	margin-top: 12px !important;
 }
 /* Botón «Select Drop-Off Location», como los de la web. */
 #packlink-drop-off {
