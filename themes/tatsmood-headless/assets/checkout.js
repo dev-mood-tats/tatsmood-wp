@@ -33,7 +33,24 @@
 		if (home && el.parentElement !== home) home.appendChild(el);
 	}
 
+	// Traductores automáticos del navegador (Chrome, Safari…): que no traduzcan las tallas
+	// («S», «M»… salían como «sg», «metro»), los nombres de producto ni los puntos de
+	// recogida. WooCommerce ya lo hace con los precios.
+	var NO_TRANSLATE = [
+		'.wc-block-components-product-name',
+		'.wc-block-components-product-details__value',
+		'.wc-block-components-order-summary-item__quantity',
+		'#pl-picker-modal .lp-location-wrapper',
+		'.woocommerce-shipping-destination',
+	].join(',');
+	function markNoTranslate() {
+		document.querySelectorAll(NO_TRANSLATE).forEach(function (el) {
+			if (el.getAttribute('translate') !== 'no') el.setAttribute('translate', 'no');
+		});
+	}
+
 	function place() {
+		markNoTranslate();
 		modalRef = document.getElementById('pl-picker-modal') || modalRef;
 		noticeRef = document.getElementById('no-drop-off-locations-message') || noticeRef;
 		var r = rates();
