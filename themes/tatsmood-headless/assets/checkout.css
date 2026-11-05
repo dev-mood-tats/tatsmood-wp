@@ -489,6 +489,12 @@ a:hover {
 /* PayPal Payments mete arriba del formulario un contenedor vacío para su reCAPTCHA (con
    margin: 20px 0 en línea) que baja «Contact information» respecto a «Order summary».
    Mientras está vacío (reCAPTCHA desactivado) no ocupa sitio. */
+/* Insignia de reCAPTCHA (abajo a la derecha). Oculta con «visibility» y no con
+   «display: none», para que reCAPTCHA siga funcionando. Google pide que, si se oculta, se
+   avise en el formulario con su texto («This site is protected by reCAPTCHA…»). */
+.grecaptcha-badge {
+	visibility: hidden !important;
+}
 #ppcp-recaptcha-v2-container:empty {
 	display: none !important;
 }
