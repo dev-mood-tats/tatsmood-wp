@@ -9,6 +9,7 @@
  * WooCommerce (checkout, carrito, correos).
  *
  * Para rehacer los tamaños de las fotos que ya están subidas: wp media regenerate --yes
+ * (En la web nunca se sirve una foto de más de 900 KB: ver TATSMOOD_MAX_SERVED_BYTES.)
  */
 
 defined( 'ABSPATH' ) || exit;
