@@ -411,8 +411,10 @@ a:hover {
 
 /* Móvil: WooCommerce enseña el resumen dos veces, plegado arriba del todo y completo junto
    al botón de pagar. Solo se deja el de abajo. (Con :has, solo cuando el de abajo existe:
-   en tablet WooCommerce no lo pinta y entonces se queda el de arriba.) */
-.wc-block-checkout:has(.checkout-order-summary-block-fill) .wc-block-checkout__sidebar {
+   en tablet WooCommerce no lo pinta y entonces se queda el de arriba.)
+   Nunca en escritorio (.is-large): ahí WooCommerce también crea el de abajo, pero oculto, y
+   el resumen bueno es la columna de la derecha. */
+.wc-block-components-sidebar-layout:not(.is-large):has(.checkout-order-summary-block-fill) .wc-block-checkout__sidebar {
 	display: none !important;
 }
 
@@ -710,4 +712,11 @@ body *:focus-visible {
 #packlink-drop-off-picker:hover {
 	background: var(--tm-fg) !important;
 	color: var(--tm-bg) !important;
+}
+
+/* Aviso «You are currently checking out as a guest.» bajo el email (WooCommerce lo añade
+   cuando el cliente no ha iniciado sesión). La tienda no tiene cuentas de cliente: todas las
+   compras son como invitado, así que el aviso no aporta nada. */
+.wc-block-checkout__guest-checkout-notice {
+	display: none !important;
 }
