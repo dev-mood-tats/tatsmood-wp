@@ -38,6 +38,15 @@ a {
 	text-decoration: none;
 	transition: opacity 0.3s;
 }
+/* Ningún enlace subrayado en el checkout (términos, privacidad, «Edit», botones con aspecto
+   de enlace…), como en el resto de la web: WooCommerce subraya algunos con sus propios estilos. */
+body a,
+body a:hover,
+body a:focus,
+body .wc-block-components-button.is-link,
+body .wc-block-components-button.is-link:hover {
+	text-decoration: none !important;
+}
 a:hover {
 	opacity: 0.6;
 }
@@ -293,7 +302,7 @@ a:hover {
 	color: var(--tm-fg);
 }
 .wc-block-checkout__terms a {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 /* Resumen del pedido */
