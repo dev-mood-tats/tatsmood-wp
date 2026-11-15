@@ -46,8 +46,8 @@ add_filter(
 }
 #template_header { font-weight: 300; }
 #template_header_image { padding: 40px 32px 0; }
-/* Logo (assets/logo-email.png, a 2x): 155px de ancho, nítido en pantallas retina. */
-#template_header_image img { width: 155px; max-width: 155px; height: auto; }
+/* Logo (assets/logo-email.png, a 2x): 130px de ancho, nítido en pantallas retina. */
+#template_header_image img { width: 130px; max-width: 130px; height: auto; }
 #header_wrapper { padding: 32px 32px 0; }
 h1, #header_wrapper h1 {
 	font-size: 22px;
@@ -118,7 +118,8 @@ h2, h3, #body_content .email-additional-content p, .email-additional-content-ali
 
 /* Enlaces sin subrayar (en negro y con el mismo grosor que el texto). */
 a, .link { color: #000000; font-weight: 300; text-decoration: none !important; }
-#template_footer #credit { font-size: 11px; font-weight: 300; line-height: 16px; }
+/* Pie (enlaces a la tienda, Instagram y TikTok): mismo tamaño que el resto del texto. */
+#template_footer #credit { font-size: 13px; font-weight: 300; line-height: 19px; }
 #template_footer #credit a { color: #000000; }
 ";
 	}
@@ -165,17 +166,14 @@ add_filter(
 );
 
 /**
- * Modo oscuro en los clientes que lo permiten (Apple Mail en Mac/iPhone/iPad, Outlook para
- * Mac…): el correo pasa a fondo oscuro con texto blanco y el logo se cambia por la versión
- * toda en blanco (assets/logo-email-dark.png).
- *
- * Gmail (app y web) no entiende este CSS y aplica su propio modo oscuro, en el que no deja
- * cambiar imágenes: ahí se sigue viendo el logo de arriba (óvalo relleno de blanco), que se
- * lee bien en claro y en oscuro.
+ * Correos siempre en claro (fondo blanco, texto negro), también con el modo oscuro activado:
+ * se declara que el correo solo tiene versión clara («color-scheme: light only»). Lo respetan
+ * Apple Mail (Mac, iPhone, iPad), Outlook para Mac y otros; Gmail web ya los enseña en claro.
+ * Las apps de Gmail no dejan forzarlo y aplican su propio modo oscuro: para esos casos el logo
+ * lleva el óvalo relleno de blanco (assets/logo-email.png), que se lee bien igualmente.
  *
  * Se añade al <head> del correo ya terminado («woocommerce_mail_content», después de que
- * WooCommerce pase los estilos a línea), porque las reglas @media no se pueden poner en línea.
- * Con !important para ganar a los colores en línea de WooCommerce.
+ * WooCommerce pase los estilos a línea).
  */
 add_filter(
 	'woocommerce_mail_content',
@@ -183,20 +181,8 @@ add_filter(
 		if ( ! is_string( $message ) || false === stripos( $message, '</head>' ) ) {
 			return $message;
 		}
-		$logo = esc_url( get_theme_file_uri( 'assets/logo-email-dark.png' ) );
-		$bg   = '#111111';
-		$line = '#333333';
-		$head = '<meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark">'
-			. '<style>'
-			. ':root { color-scheme: light dark; supported-color-schemes: light dark; }'
-			. '@media (prefers-color-scheme: dark) {'
-			. "body, table, td, th, div, p, #outer_wrapper, #wrapper, #inner_wrapper, #template_container, #template_header, #template_header_image, #template_body, #body_content, #body_content_inner, #template_footer { background-color: {$bg} !important; }"
-			. 'body, td, th, p, span, a, li, address, strong, b, h1, h2, h3, .text, .link, .address, .order-item-data, #credit, #credit p, #credit a { color: #ffffff !important; }'
-			. "* { border-color: {$line} !important; }"
-			. '#template_container { box-shadow: none !important; }'
-			. "#template_header_image img { content: url('{$logo}') !important; }"
-			. '}'
-			. '</style>';
+		$head = '<meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light">'
+			. '<style>:root { color-scheme: light only; supported-color-schemes: light; }</style>';
 		return preg_replace( '~</head>~i', $head . '</head>', $message, 1 );
 	}
 );
