@@ -735,3 +735,20 @@ body *:focus-visible {
 .wc-block-components-order-summary-item__description .wc-block-components-product-name {
 	flex-grow: 0 !important;
 }
+
+/* Autorrelleno de formularios: sin el fondo amarillo o azul del navegador (Chrome, Safari, Edge,
+   Firefox). El texto mantiene el color de la web. */
+html body input:-webkit-autofill,
+html body textarea:-webkit-autofill,
+html body select:-webkit-autofill {
+	-webkit-text-fill-color: var(--tm-fg) !important;
+	caret-color: var(--tm-fg);
+	box-shadow: 0 0 0 1000px var(--tm-bg) inset !important;
+	transition: background-color 600000s 0s, color 600000s 0s !important;
+}
+html body input:autofill,
+html body textarea:autofill,
+html body select:autofill {
+	box-shadow: 0 0 0 1000px var(--tm-bg) inset !important;
+	filter: none !important;
+}
