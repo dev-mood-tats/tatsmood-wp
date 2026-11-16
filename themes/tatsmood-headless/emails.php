@@ -153,6 +153,12 @@ function tatsmood_email_shop_url( $string ) {
 add_filter( 'woocommerce_email_format_string', 'tatsmood_email_shop_url' );
 add_filter( 'woocommerce_email_footer_text', 'tatsmood_email_shop_url', 20 );
 
+/** El logo del correo enlaza a la web (tatsmood.com), no al WordPress (shop.tatsmood.com). */
+add_filter(
+	'woocommerce_email_header_image_url',
+	static fn() => function_exists( 'tatsmood_theme_frontend_url' ) ? tatsmood_theme_frontend_url( '/' ) : home_url( '/' )
+);
+
 /**
  * Logo de los correos: versión con el interior del óvalo en blanco y un borde blanco fino
  * (assets/logo-email.png, a 2x). El logo normal es negro sobre transparente y, con el modo
