@@ -729,3 +729,9 @@ body *:focus-visible {
 .wc-block-checkout__guest-checkout-notice {
 	display: none !important;
 }
+
+/* Resumen del pedido: la talla justo debajo del nombre. WooCommerce estira el nombre para
+   ocupar todo el alto de la línea (lo que mide la foto) y la talla se quedaba abajo del todo. */
+.wc-block-components-order-summary-item__description .wc-block-components-product-name {
+	flex-grow: 0 !important;
+}
